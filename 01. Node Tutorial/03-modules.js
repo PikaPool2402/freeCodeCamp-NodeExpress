@@ -23,3 +23,4 @@ sayHi(names.peter);
 sayHi(names.john);
 
 require("./07-mind-grenade");
+// whenever you import a module/file, you invoke (run) it!
