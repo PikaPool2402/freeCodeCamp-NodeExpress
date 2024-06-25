@@ -1,5 +1,5 @@
-// no dom, cannot use methods like textContent()
-// howerver, we have access to methods like setInterval, and setTimeOut!
+// no dom, cannot use methods like textContent() that use the dom!
+// however, we have access to methods like setInterval, and setTimeOut!
 
 // Global Variables!
 // __filename - returns the current file name
