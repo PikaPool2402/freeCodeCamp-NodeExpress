@@ -12,6 +12,9 @@
 // In CommonJS, every file in node is a module (by default)
 // Modules - Encapsulated Code (only share minimum principle)
 
+const names = require("./04-names");
+const sayHi = require("./05-utils");
+
 sayHi("susan");
-sayHi(peter);
-sayHi(john);
+sayHi(names.peter);
+sayHi(names.john);
