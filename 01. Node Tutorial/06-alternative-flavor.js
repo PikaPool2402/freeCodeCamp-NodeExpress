@@ -7,4 +7,4 @@ const person = {
 };
 module.exports.singlePerson = person;
 
-console.log(module);
+// console.log(module);

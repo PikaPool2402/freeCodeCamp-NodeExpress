@@ -1,7 +1,7 @@
 const peter = "peter";
 const john = "john";
 
-console.log(module);
+// console.log(module);
 // module is global var!
 // contains an export property!
 

@@ -21,3 +21,5 @@ console.log(data);
 sayHi("susan");
 sayHi(names.peter);
 sayHi(names.john);
+
+require("./07-mind-grenade");
