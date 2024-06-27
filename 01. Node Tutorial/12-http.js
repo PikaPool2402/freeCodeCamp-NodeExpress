@@ -7,6 +7,7 @@ const http = require("http");
 const server = http.createServer((req, res) => {
     console.log(req); // customize response, according to endpoint (url)!
 
+    // url property tells us what endpoint the client is requesting!
     if (req.url === "/") {
         res.end("welcome to home-page!"); // short-cut
     } else if (req.url === "/about") {
