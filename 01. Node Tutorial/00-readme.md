@@ -65,7 +65,9 @@ npm i -g <packageName>
 
 -   therefore, we dont need to write `node 01-intro.js` again and again to reflect the changes.
 
-#### Dev Dependencies
+-   the command to spin up the development server is: `nodemon app.js`
+
+## Dev Dependencies
 
 -   dependencies which are only required during development, and not in the production build.
 
@@ -85,8 +87,14 @@ npm i nodemon --save-dev
 }
 ```
 
-#### Uninstall Packages
+## Uninstall Packages
 
 ```sh
 npm uninstall <packageName>
 ```
+
+## package-lock.json
+
+-   contains versions for all of the packages used.
+
+-   store versions of packages used by other packages implicitly to avoid bugs.
