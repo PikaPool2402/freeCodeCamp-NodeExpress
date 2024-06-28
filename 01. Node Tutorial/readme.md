@@ -179,3 +179,7 @@ server.listen(5000, () => {
     console.log("Server listening on port : 5000....");
 });
 ```
+
+-   Therefore, we should always avoid writing blocking code, and setting up asynchronous functionalities, that can be "offloaded" and invoked when ready!
+
+### Asynchronous Read (Cleaner Approach)
