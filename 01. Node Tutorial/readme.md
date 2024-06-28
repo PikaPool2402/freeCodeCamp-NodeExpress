@@ -141,3 +141,41 @@ npm uninstall <packageName>
 -   When the time-consuming operation is completed, the callback function is executed after all the immmediate code has been executed to serve Larry's request.
 
 -   **Therefore, whenever node encounters an asynchronous operation, it offloads it and instead executes the immediately availaible code. When the immediate code has been executed, the callback function is invoked to executed the previously offloaded function!**
+
+## Async Patterns
+
+### Blocking Code
+
+-   The code for the "/about" url takes a long time to execute.
+
+-   Therefore if user-1 requests the about page, it will take a lot of time to serve the response.
+
+-   And as a result, the other user requests will be blocked, till user-1 request is not served with a response.
+
+-   user-1 requests about page -> callback function starts execution (takes a long time) -> user-2, user-3 requests some other page but the callback function has not finished previous execution -> therefore user-2, user-3 requests are blocked till user-1 is served.
+
+#### Code
+
+```js
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+    if (req.url === "/") {
+        res.end("Home Page");
+    }
+    if (req.url === "/about") {
+        // BLOCKING CODE !!!
+        for (let i = 0; i < 1000; i++) {
+            for (let j = 0; j < 1000; j++) {
+                console.log(`${i} ${j}`);
+            }
+        }
+        res.end("About Page");
+    }
+    res.end("Error Page");
+});
+
+server.listen(5000, () => {
+    console.log("Server listening on port : 5000....");
+});
+```
