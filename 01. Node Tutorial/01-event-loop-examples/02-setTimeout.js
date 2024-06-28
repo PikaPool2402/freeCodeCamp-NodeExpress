@@ -1,9 +1,12 @@
-// started operating system process
+// started operating system process!
+
 console.log("first");
 
+// asynchronous!
 setTimeout(() => {
     console.log("second");
 }, 0);
 
 console.log("third");
-// completed and exited operating system process
+
+// completed and exited operating system process!
