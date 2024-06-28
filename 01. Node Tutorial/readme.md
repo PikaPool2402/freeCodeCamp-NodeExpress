@@ -139,3 +139,5 @@ npm uninstall <packageName>
 -   The event loop identifies these time-consuming asynchronous tasks, and registers a callback function for them.
 -   Therefore, these time-consuming tasks are "offloaded" and the rest of the user requests can be processed (non-blocking).
 -   When the time-consuming operation is completed, the callback function is executed after all the immmediate code has been executed to serve Larry's request.
+
+-   **Therefore, whenever node encounters an asynchronous operation, it offloads it and instead executes the immediately availaible code. When the immediate code has been executed, the callback function is invoked to executed the previously offloaded function!**
