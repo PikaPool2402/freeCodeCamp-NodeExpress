@@ -183,3 +183,110 @@ server.listen(5000, () => {
 -   Therefore, we should always avoid writing blocking code, and setting up asynchronous functionalities, that can be "offloaded" and invoked when ready!
 
 ### Asynchronous Read (Cleaner Approach)
+
+-   setup promises along with async-await, instead of implementing a callback hell.
+
+#### Code
+
+```js
+const { readFile } = require("fs");
+
+readFile("./test-folder/first.txt", "utf8", (err, data) => {
+    if (err) {
+        return;
+    } else {
+        console.log(data);
+    }
+});
+```
+
+#### Return Promise
+
+```js
+const { readFile } = require("fs");
+
+const getText = (path) => {
+    return new Promise((resolve, reject) => {
+        readFile(path, "utf8", (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+};
+
+getText("./test-folder/first.txt")
+    .then((result) => console.log(result))
+    .catch((err) => console.log(err));
+```
+
+#### Async Await
+
+```js
+const { readFile } = require("fs");
+
+const getText = (path) => {
+    return new Promise((resolve, reject) => {
+        readFile(path, "utf8", (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+};
+
+const start = async () => {
+    const first = await getText("./test-folder/first.txt");
+    // await waits until promise gets resolved!
+    console.log(first);
+};
+start();
+```
+
+```js
+const start = async () => {
+    try {
+        const first = await getText("./test-folder/first.txt");
+        // wait for first file
+        const second = await getText("./test-folder/second.txt");
+        // wait for second file
+        console.log(first, second);
+    } catch (error) {
+        console.log(error);
+    }
+};
+start();
+```
+
+#### Refactor Code
+
+```js
+const { readFile, writeFile } = require("fs");
+
+const util = require("util");
+// used to directly return a promise!
+const readFilePromise = util.promisify(readFile);
+const writeFilePromise = util.promisify(writeFile);
+
+const start = async () => {
+    try {
+        const first = await readFilePromise("./test-folder/first.txt", "utf8");
+        const second = await readFilePromise(
+            "./test-folder/second.txt",
+            "utf8"
+        );
+        await writeFilePromise(
+            "./test-folder/result-mind-grenade.txt",
+            `THIS IS AWESOME : ${first} ${second}`
+        );
+        console.log(first, second);
+    } catch (error) {
+        console.log(error);
+    }
+};
+start();
+```
