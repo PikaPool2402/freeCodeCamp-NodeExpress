@@ -1,5 +1,9 @@
 # Node Tutorial
 
+https://github.com/john-smilga/node-express-course
+
+https://www.course-api.com/
+
 ## npm - Node Package Manager
 
 -   https://www.npmjs.com/
@@ -98,3 +102,40 @@ npm uninstall <packageName>
 -   contains versions for all of the packages used.
 
 -   store versions of packages used by other packages implicitly to avoid bugs.
+
+## Event Loop
+
+-   https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
+
+-   https://www.youtube.com/watch?v=PNa9OMajw9w&pp=ygUaZXZlbnQgbG9vcCBtb3JuaW5nIGtleW5vdGU%3D
+
+-   The event loop is what allows Node.js to perform non-blocking I/O operations — despite the fact that JavaScript is single-threaded — by **offloading** operations to the system kernel whenever possible. (eg: event-loop offloads the asynchronous read operation).
+
+#### JavaScript is Synchronous & Single-Threaded (Slide-1)
+
+-   JavaScript runs code line-by-line, in a synchronous fashion.
+
+-   Therefore if a functionality takes a long time to run, our application is kind of blocked.
+
+#### Solution - setTimeout (Slide-2)
+
+-   setTimeOut is provided by the browser by default. (asynchronous)
+
+-   setTimeOut is used to execute the function after the timer expires.
+
+-   The solution is to "offload" the time-consuming task to the browser.
+
+-   The "offloaded" tasks are processed by the browser in the background (non-blocking).
+
+-   Once JavaScript is done executing the immediate code, only then it executes the callback.
+
+#### Event Loop (Slide-3)
+
+-   In the slide, we have 8 users, and all of them requesting something from the application.
+-   Let us say, Larry has a request which executes a function that takes a long time to complete.
+-   Therefore, this operation becomes blocking, and the user requests are blocked and cannot be served.
+
+-   This is where the event loop comes into play.
+-   The event loop identifies these time-consuming asynchronous tasks, and registers a callback function for them.
+-   Therefore, these time-consuming tasks are "offloaded" and the rest of the user requests can be processed (non-blocking).
+-   When the time-consuming operation is completed, the callback function is executed after all the immmediate code has been executed to serve Larry's request.
