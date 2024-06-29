@@ -290,3 +290,12 @@ const start = async () => {
 };
 start();
 ```
+
+## Events
+
+-   Event-Driven Programming - flow of the program is partly controlled by the events that occur in the browser. Example: User clicks a button, user clicks a link, etc.
+
+-   This style of programming is used heavily in Node.js
+
+-   We listen for specific events, and register functions that will execute when the event fires off.
+ 
